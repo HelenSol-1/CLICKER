@@ -176,6 +176,11 @@ async def webapp_data_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
 
 # Функция для запуска игры через WebApp
 async def start_game(update, context):
+     # Проверяем, что URL корректен
+    if not webapp_url:
+        await update.message.reply_text('Ошибка: URL для WebApp не найден.')
+        return
+    
     keyboard = [
         [InlineKeyboardButton("Начать игру", web_app=WebAppInfo(url=WEBAPP_URL))]
     ]
