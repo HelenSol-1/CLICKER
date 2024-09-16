@@ -1,49 +1,34 @@
+let clicks = 0;
 let stars = 0;
-const brain = document.getElementById('brain');
-const starsDisplay = document.getElementById('stars');
-const feedBrainBtn = document.getElementById('feed-brain-btn');
-const selectDietBtn = document.getElementById('select-diet-btn');
 
-// Переходы между экранами
-function showScreen(screenId) {
-    document.querySelectorAll('.screen').forEach(screen => {
-        screen.classList.remove('active');
-    });
-    document.getElementById(screenId).classList.add('active');
-}
+// Кликабельный мозг (на главном экране)
+const brain = document.getElementById('brain');
+const clicksDisplay = document.getElementById('clicks');
+const starsDisplay = document.getElementById('stars');
 
 // Логика кликов на мозг
 brain.addEventListener('click', () => {
-    stars++;
-    starsDisplay.textContent = stars;
+    clicks++;
+    clicksDisplay.textContent = clicks;
 });
 
-// Переход на экран питания мозга
-feedBrainBtn.addEventListener('click', () => {
-    if (stars >= 10) {  // Условие для перехода
-        showScreen('input-screen');
-    } else {
-        alert('Недостаточно звезд!');
-    }
+// Переходы по нижнему и верхнему меню
+document.getElementById('home-btn').addEventListener('click', () => {
+    window.location.href = 'index.html'; // Переход на главный экран
 });
 
-// Логика выбора типа питания и переход на экран продуктов
-selectDietBtn.addEventListener('click', () => {
-    showScreen('product-screen');
-    displayProducts();
+document.getElementById('feed-brain-btn').addEventListener('click', () => {
+    window.location.href = 'product-selection.html'; // Переход на экран выбора продуктов
 });
 
-// Отображение продуктов
-function displayProducts() {
-    const productList = document.getElementById('product-list');
-    productList.innerHTML = '';  // Очищаем список продуктов
+document.getElementById('user-data-btn').addEventListener('click', () => {
+    window.location.href = 'input-screen.html'; // Переход на экран ввода данных
+});
 
-    products.forEach(product => {
-        const productButton = document.createElement('button');
-        productButton.textContent = product.name;
-        productButton.addEventListener('click', () => {
-            alert(`${product.name}: ${product.calories} ккал`);
-        });
-        productList.appendChild(productButton);
-    });
-}
+document.getElementById('buy-stars-btn').addEventListener('click', () => {
+    window.location.href = 'buy-stars.html'; // Переход на экран покупки звезд
+});
+
+document.getElementById('recommendations-btn').addEventListener('click', () => {
+    window.location.href = 'recommendations.html'; // Переход на экран рекомендаций
+});
