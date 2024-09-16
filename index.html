@@ -3,22 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кликер - Маленький Мозг</title>
+    <title>Планирование питания</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="game-container">
-        <h1>Кликер с Маленьким Мозгом</h1>
-        <p>Очки: <span id="score">0</span></p>
-        <p>Звёзды: <span id="stars">0</span></p>
-        <p>Энергия: <span id="energy">10</span></p>
-        <img id="brain" src="brain.png" alt="Маленький Мозг" />
-        <p>Кликай на мозг, чтобы заработать очки!</p>
-        <button id="upgrade-btn">Увеличить мощность кликов (100 звёзд)</button>
-        <button id="task-btn">Выполнить задание</button>
-        <button id="reset-btn">Сбросить прогресс</button>
+
+    <div class="container">
+        <h1>Выберите продукты для рациона</h1>
+        <div id="product-list">
+            <!-- Список продуктов будет загружен динамически -->
+        </div>
+
+        <h2>Ваш выбор:</h2>
+        <ul id="selected-products"></ul>
+
+        <h3>Калории: <span id="total-calories">0</span></h3>
+        <h3>Белки: <span id="total-protein">0</span></h3>
+        <h3>Жиры: <span id="total-fat">0</span></h3>
+        <h3>Углеводы: <span id="total-carbs">0</span></h3>
+
+        <button id="finalize-day">Завершить день</button>
     </div>
 
+    <script src="productData.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
