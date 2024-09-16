@@ -1,39 +1,43 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
     margin: 0;
-    padding: 20px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 0;
     text-align: center;
+    background-color: #f0f8ff;
 }
 
-#product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+#brain {
+    cursor: pointer;
+    width: 200px;
+    height: auto;
 }
 
 button {
-    width: 150px;
-    height: 50px;
+    padding: 10px 20px;
+    margin-top: 20px;
     background-color: #ff6347;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #ff4500;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+.screen {
+    display: none;
+    padding: 20px;
+}
+
+.screen.active {
+    display: block;
+}
+
+#product-list button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px;
+    background-color: #87cefa;
 }

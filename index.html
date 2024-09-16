@@ -3,26 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Планирование питания</title>
+    <title>Мозговой кликер</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Выберите продукты для рациона</h1>
-        <div id="product-list">
-            <!-- Список продуктов будет загружен динамически -->
+    <!-- Экран с кликером -->
+    <div id="clicker-screen" class="screen active">
+        <h1>Мозговой кликер</h1>
+        <div class="stats">
+            <p>Звезды: <span id="stars">0</span></p>
         </div>
+        <img src="brain.png" alt="Маленький Мозг" id="brain">
+        <button id="feed-brain-btn">Питание мозга</button>
+    </div>
 
-        <h2>Ваш выбор:</h2>
-        <ul id="selected-products"></ul>
+    <!-- Экран с вводом данных пользователя -->
+    <div id="input-screen" class="screen">
+        <h1>Ввод данных</h1>
+        <label for="gender">Пол:</label>
+        <select id="gender">
+            <option value="male">Мужской</option>
+            <option value="female">Женский</option>
+        </select>
 
-        <h3>Калории: <span id="total-calories">0</span></h3>
-        <h3>Белки: <span id="total-protein">0</span></h3>
-        <h3>Жиры: <span id="total-fat">0</span></h3>
-        <h3>Углеводы: <span id="total-carbs">0</span></h3>
+        <label for="weight">Вес (кг):</label>
+        <input type="number" id="weight" placeholder="Введите вес">
 
-        <button id="finalize-day">Завершить день</button>
+        <label for="height">Рост (см):</label>
+        <input type="number" id="height" placeholder="Введите рост">
+
+        <label for="activity">Активность:</label>
+        <select id="activity">
+            <option value="low">Мало занимаюсь</option>
+            <option value="medium">Средняя активность</option>
+            <option value="high">Высокая активность</option>
+        </select>
+
+        <button id="select-diet-btn">Выбрать тип питания</button>
+    </div>
+
+    <!-- Экран с продуктами -->
+    <div id="product-screen" class="screen">
+        <h1>Выбор продуктов</h1>
+        <div id="product-list"></div>
     </div>
 
     <script src="productData.js"></script>

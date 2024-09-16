@@ -1,89 +1,49 @@
-// Получаем элементы DOM
+let stars = 0;
 const brain = document.getElementById('brain');
-const scoreDisplay = document.getElementById('score');
 const starsDisplay = document.getElementById('stars');
-const energyDisplay = document.getElementById('energy');
-const upgradeBtn = document.getElementById('upgrade-btn');
-const taskBtn = document.getElementById('task-btn');
-const resetBtn = document.getElementById('reset-btn');
+const feedBrainBtn = document.getElementById('feed-brain-btn');
+const selectDietBtn = document.getElementById('select-diet-btn');
 
-// Инициализация переменных
-let score = localStorage.getItem('brainScore') ? parseInt(localStorage.getItem('brainScore')) : 0;
-let stars = localStorage.getItem('brainStars') ? parseInt(localStorage.getItem('brainStars')) : 0;
-let energy = localStorage.getItem('brainEnergy') ? parseInt(localStorage.getItem('brainEnergy')) : 10;
-let clickMultiplier = localStorage.getItem('clickMultiplier') ? parseInt(localStorage.getItem('clickMultiplier')) : 1;
-let upgradeCost = 100; // Стоимость апгрейда
+// Переходы между экранами
+function showScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+    });
+    document.getElementById(screenId).classList.add('active');
+}
 
-// Обновляем отображение очков, звёзд и энергии
-scoreDisplay.textContent = score;
-starsDisplay.textContent = stars;
-energyDisplay.textContent = energy;
-
-// Обработчик кликов по мозгу
+// Логика кликов на мозг
 brain.addEventListener('click', () => {
-    if (energy > 0) {
-        score += clickMultiplier;
-        scoreDisplay.textContent = score;
-        energy--;
-        energyDisplay.textContent = energy;
-        localStorage.setItem('brainScore', score);
-        localStorage.setItem('brainEnergy', energy);
-    } else {
-        alert('Недостаточно энергии. Подожди восстановления!');
-    }
-});
-
-// Ежедневные задания
-taskBtn.addEventListener('click', () => {
-    let taskCompleted = confirm('Реши задачу: 2 + 2 = ?');
-    if (taskCompleted) {
-        let starsEarned = 5;
-        stars += starsEarned;
-        starsDisplay.textContent = stars;
-        localStorage.setItem('brainStars', stars);
-        alert(`Ты получил ${starsEarned} звёзд за выполнение задания!`);
-    }
-});
-
-// Апгрейд мощности кликов
-upgradeBtn.addEventListener('click', () => {
-    if (stars >= upgradeCost) {
-        clickMultiplier++;
-        stars -= upgradeCost;
-        starsDisplay.textContent = stars;
-        upgradeCost *= 2; // Увеличение стоимости апгрейда
-        alert('Мощность кликов увеличена!');
-        localStorage.setItem('brainStars', stars);
-        localStorage.setItem('clickMultiplier', clickMultiplier);
-    } else {
-        alert('Недостаточно звёзд для улучшения.');
-    }
-});
-
-// Сброс прогресса
-resetBtn.addEventListener('click', () => {
-    score = 0;
-    stars = 0;
-    energy = 10;
-    clickMultiplier = 1;
-    scoreDisplay.textContent = score;
+    stars++;
     starsDisplay.textContent = stars;
-    energyDisplay.textContent = energy;
-    localStorage.clear();
 });
 
-// Восстановление энергии каждые 5 минут
-setInterval(() => {
-    if (energy < 10) {
-        energy++;
-        energyDisplay.textContent = energy;
-        localStorage.setItem('brainEnergy', energy);
+// Переход на экран питания мозга
+feedBrainBtn.addEventListener('click', () => {
+    if (stars >= 10) {  // Условие для перехода
+        showScreen('input-screen');
+    } else {
+        alert('Недостаточно звезд!');
     }
-}, 300000); // 5 минут = 300000 миллисекунд
-
-// Обновление счётчиков при загрузке страницы
-window.addEventListener('load', () => {
-    scoreDisplay.textContent = score;
-    starsDisplay.textContent = stars;
-    energyDisplay.textContent = energy;
 });
+
+// Логика выбора типа питания и переход на экран продуктов
+selectDietBtn.addEventListener('click', () => {
+    showScreen('product-screen');
+    displayProducts();
+});
+
+// Отображение продуктов
+function displayProducts() {
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = '';  // Очищаем список продуктов
+
+    products.forEach(product => {
+        const productButton = document.createElement('button');
+        productButton.textContent = product.name;
+        productButton.addEventListener('click', () => {
+            alert(`${product.name}: ${product.calories} ккал`);
+        });
+        productList.appendChild(productButton);
+    });
+}
