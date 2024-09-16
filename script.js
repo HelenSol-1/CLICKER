@@ -12,23 +12,25 @@ brain.addEventListener('click', () => {
     clicksDisplay.textContent = clicks;
 });
 
-// Переходы по нижнему и верхнему меню
+// Верхнее меню
 document.getElementById('home-btn').addEventListener('click', () => {
     window.location.href = 'index.html'; // Переход на главный экран
-});
-
-document.getElementById('feed-brain-btn').addEventListener('click', () => {
-    window.location.href = 'product-selection.html'; // Переход на экран выбора продуктов
-});
-
-document.getElementById('user-data-btn').addEventListener('click', () => {
-    window.location.href = 'input-screen.html'; // Переход на экран ввода данных
 });
 
 document.getElementById('buy-stars-btn').addEventListener('click', () => {
     window.location.href = 'buy-stars.html'; // Переход на экран покупки звезд
 });
 
+document.getElementById('user-data-btn').addEventListener('click', () => {
+    window.location.href = 'input-screen.html'; // Переход на экран изменения данных
+});
+
+// Нижнее меню
+document.getElementById('feed-brain-btn').addEventListener('click', () => {
+    window.location.href = 'product-selection.html'; // Переход на экран выбора продуктов
+});
+
 document.getElementById('recommendations-btn').addEventListener('click', () => {
     window.location.href = 'recommendations.html'; // Переход на экран рекомендаций
 });
+
